@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/drawable/shape_button_green.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/drawable/shape_button_red.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/drawable/shape_card.xml" value="0.21794871794871795" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/drawable/shape_primary_button.xml" value="0.29444444444444445" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/drawable/shape_round.xml" value="0.29444444444444445" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/drawable/side_nav_bar.xml" value="0.23148148148148148" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/activity_cards.xml" value="0.2" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/adapter_card.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/adapter_deck.xml" value="0.20318725099601595" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/app_bar_main.xml" value="0.15" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/bottom_sheet_add_deck.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/bottom_sheet_create_card.xml" value="0.2" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/card_adapter.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/content_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/deck_adapter.xml" value="0.2" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/deck_cards_fragment.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/decks_fragment.xml" value="0.2" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/dialog_progress.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/fragment_decks.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/fragment_home.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/nav_header_main.xml" value="0.15" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/layout/settings_fragment.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/emro/Desktop/Git/Studies/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

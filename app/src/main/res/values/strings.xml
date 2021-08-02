@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Studies</string>
+
+    <!-- Main Drawer -->
+    <string name="home">Início</string>
+    <string name="decks">Baralhos</string>
+    <string name="settings">Configurações</string>
+    <string name="send_comment">Enviar comentário</string>
+    <string name="rate_app">Avaliar aplicativo</string>
+
+    <!-- Login Activity -->
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="enter">Entrar</string>
+    <string name="register_login">Registrar-se</string>
+    <string name="name">Nome</string>
+    <string name="register">Cadastrar</string>
+    <string name="new_deck">Novo Baralho</string>
+    <string name="new_card">Nova carta</string>
+    <string name="cards">Cartas</string>
+    <string name="front">Frente</string>
+    <string name="back">Trás</string>
+    <string name="start">Iniciar estudo</string>
+
+    <!-- Not treated-->
+
+</resources>
