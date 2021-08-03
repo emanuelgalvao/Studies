@@ -6,8 +6,8 @@ data class Card(
     val id: String,
     val frontPhrase: String,
     val backPhrase: String,
-    val displayTimesNumber: Long,
-    val correctTimesNumber: Long
+    var displayTimesNumber: Long,
+    var correctTimesNumber: Long
 )
 
 data class CardFirebase(

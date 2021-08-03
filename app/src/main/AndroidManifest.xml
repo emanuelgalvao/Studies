@@ -10,27 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Studies">
         <activity
-            android:name=".ui.activity.RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activity.LoginActivity"
-            android:exported="true">
-
+            android:name=".ui.activity.SplashActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
+            android:name=".ui.activity.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.activity.CardsActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Studies.NoActionBar"/>
+            android:theme="@style/Theme.Studies.NoActionBar" />
     </application>
 
 </manifest>

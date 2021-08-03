@@ -1,11 +1,14 @@
 package com.emanuelgalvao.studies.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -19,6 +22,7 @@ import com.emanuelgalvao.studies.R
 import com.emanuelgalvao.studies.databinding.DeckCardsFragmentBinding
 import com.emanuelgalvao.studies.model.Card
 import com.emanuelgalvao.studies.service.listener.CardListener
+import com.emanuelgalvao.studies.ui.activity.CardsActivity
 import com.emanuelgalvao.studies.ui.activity.MainActivity
 import com.emanuelgalvao.studies.ui.adapter.CardAdapter
 import com.emanuelgalvao.studies.util.AlertUtils
@@ -56,7 +60,7 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
 
         mDeckListener = object: CardListener {
             override fun onEdit(card: Card) {
-
+                editCard(card)
             }
         }
 
@@ -86,6 +90,7 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
         when (v?.id) {
             R.id.button_add_card -> openCreateCard()
             R.id.button_start -> startStudies()
+            R.id.button_delete -> startStudies()
         }
     }
 
@@ -118,8 +123,44 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
         mViewModel.createCard(mDeckId, frontPhrase, backPhrase)
     }
 
-    private fun startStudies() {
+    private fun editCard(card: Card) {
+        MaterialDialog(requireContext(), BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+            title(R.string.edit_card)
+            customView(R.layout.bottom_sheet_create_card)
+            getCustomView().findViewById<TextInputEditText>(R.id.edit_front).setText(card.frontPhrase)
+            getCustomView().findViewById<TextInputEditText>(R.id.edit_back).setText(card.backPhrase)
+            getCustomView().findViewById<Button>(R.id.button_delete).isVisible = true
+            getCustomView().findViewById<Button>(R.id.button_delete).setOnClickListener(this@DeckCardsFragment)
+            positiveButton(null, "Salvar") {
+                noAutoDismiss()
 
+                val frontPhrase = getCustomView().findViewById<TextInputEditText>(R.id.edit_front).text.toString().trim()
+                val backPhrase = getCustomView().findViewById<TextInputEditText>(R.id.edit_back).text.toString().trim()
+
+                if (frontPhrase != "" && backPhrase != "") {
+                    updateCard(Card(card.id, frontPhrase, backPhrase, card.displayTimesNumber, card.correctTimesNumber))
+                    dismiss()
+                } else if (frontPhrase == "") {
+                    getCustomView().findViewById<TextInputLayout>(R.id.textfield_front).error = "Preencha o texto da frente de cartão."
+                } else {
+                    getCustomView().findViewById<TextInputLayout>(R.id.textfield_back).error = "Preencha o texto de trás do cartão."
+                }
+            }
+            negativeButton(null, "Cancelar")
+        }
+    }
+
+    private fun updateCard(card: Card) {
+        AlertUtils.showProgressDialog(requireContext(), "Alterando Carta...")
+        mViewModel.updateCard(mDeckId, card)
+    }
+
+    private fun startStudies() {
+        val intent = Intent(activity, CardsActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString("deckId", mDeckId)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
     private fun observers() {
@@ -138,6 +179,14 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
             AlertUtils.closeProgressDialog()
         })
 
+        mViewModel.updateCard.observe(viewLifecycleOwner, {
+            if (it.isSucess()) {
+                AlertUtils.showSnackbar(binding.root, "Carta alterada com sucesso!", ContextCompat.getColor(requireContext(), R.color.snack_green))
+            } else {
+                AlertUtils.showSnackbar(binding.root, it.getMessage(), ContextCompat.getColor(requireContext(), R.color.snack_red))
+            }
+            AlertUtils.closeProgressDialog()
+        })
     }
 
 }

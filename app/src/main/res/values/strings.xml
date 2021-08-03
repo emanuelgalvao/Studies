@@ -17,10 +17,12 @@
     <string name="register">Cadastrar</string>
     <string name="new_deck">Novo Baralho</string>
     <string name="new_card">Nova carta</string>
+    <string name="edit_card">Editar carta</string>
     <string name="cards">Cartas</string>
     <string name="front">Frente</string>
     <string name="back">Trás</string>
     <string name="start">Iniciar estudo</string>
+    <string name="delete_card">Excluir carta</string>
 
     <!-- Not treated-->
 

@@ -30,6 +30,8 @@ class UserRepository(val context: Context) {
 
     fun getUserName(): String = mSharedPreferences.get("name")
 
+    fun getEmail(): String = mSharedPreferences.get("email")
+
     fun login(email: String, password: String, listener: AsyncTaskListener<User>) {
 
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->

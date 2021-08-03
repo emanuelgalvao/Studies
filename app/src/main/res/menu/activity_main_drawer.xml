@@ -8,12 +8,12 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="@string/home" />
 
         <item
             android:id="@+id/nav_decks"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_deck"
             android:title="@string/decks" />
     </group>
 
@@ -22,17 +22,17 @@
         android:checkableBehavior="none">
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_settings"
             android:title="@string/settings" />
 
         <item
             android:id="@+id/nav_comment"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_comment"
             android:title="@string/send_comment" />
 
         <item
             android:id="@+id/nav_rate"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_rate"
             android:title="@string/rate_app" />
     </group>
 

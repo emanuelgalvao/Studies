@@ -3,6 +3,7 @@ package com.emanuelgalvao.studies.ui.adapter.viewholder
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.emanuelgalvao.studies.R
 import com.emanuelgalvao.studies.model.Card
@@ -17,7 +18,13 @@ class CardViewHolder(itemView: View, val listener: CardListener): RecyclerView.V
     fun bind(card: Card) {
 
         mTextCardFront.text = card.frontPhrase
-        mTextCardStatistics.text = "Exibições: ${card.displayTimesNumber} - Acertos: ${card.correctTimesNumber}"
+
+        if (card.displayTimesNumber > 0) {
+            mTextCardStatistics.isVisible = true
+            mTextCardStatistics.text = "Exibições: ${card.displayTimesNumber} - Acertos: ${card.correctTimesNumber}"
+        } else {
+            mTextCardStatistics.isVisible = false
+        }
 
         mImageEdit.setOnClickListener {
             listener.onEdit(card)
