@@ -28,11 +28,13 @@
         <item
             android:id="@+id/nav_comment"
             android:icon="@drawable/ic_comment"
+            android:visible="false"
             android:title="@string/send_comment" />
 
         <item
             android:id="@+id/nav_rate"
             android:icon="@drawable/ic_rate"
+            android:visible="false"
             android:title="@string/rate_app" />
     </group>
 

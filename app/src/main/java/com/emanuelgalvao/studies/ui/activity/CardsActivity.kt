@@ -1,6 +1,7 @@
 package com.emanuelgalvao.studies.ui.activity
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -63,7 +64,7 @@ class CardsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun answerClick(correct: Boolean) {
-        mViewModel.getRandomCard()
+        mViewModel.updateCard(mDeckId, correct)
     }
 
     private fun observers() {
@@ -83,6 +84,22 @@ class CardsActivity : AppCompatActivity(), View.OnClickListener {
                     binding.textFront.text = it.frontPhrase
                     binding.textBack.text = it.backPhrase
                 }, 400)
+            } else {
+                binding.textFront.text = it.frontPhrase
+                binding.textBack.text = it.backPhrase
+            }
+        })
+
+        mViewModel.showResult.observe(this, {
+            if (it) {
+                val result = mViewModel.result.value
+                val bundle = Bundle()
+                bundle.putSerializable("result", result)
+                bundle.putString("deckId", mDeckId)
+                val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtras(bundle)
+                startActivity(intent)
+                finish()
             }
         })
     }

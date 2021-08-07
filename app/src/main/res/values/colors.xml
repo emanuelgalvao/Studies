@@ -19,6 +19,10 @@
     <color name="card_back_color">#D8D8D8</color>
     <color name="card_back_border">#B1B1B1</color>
 
+    <!-- Text -->
+    <color name="text_red">#dc3545</color>
+    <color name="text_green">#28a745</color>
+
     <!-- Snackbar -->
     <color name="snack_red">#dc3545</color>
     <color name="snack_green">#28a745</color>

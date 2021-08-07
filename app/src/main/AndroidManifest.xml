@@ -10,8 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Studies">
         <activity
+            android:name=".ui.activity.ResultActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.activity.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
