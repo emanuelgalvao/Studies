@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.emanuelgalvao.studies.R
 import com.emanuelgalvao.studies.model.Deck
@@ -31,6 +30,11 @@ class DeckViewHolder(itemView: View, val listener: DeckListener): RecyclerView.V
         }
 
         mImageFavorite.setOnClickListener {
+            if (!deck.favorite) {
+                mImageFavorite.setImageDrawable(itemView.resources.getDrawable(R.drawable.ic_star_filled))
+            } else {
+                mImageFavorite.setImageDrawable(itemView.resources.getDrawable(R.drawable.ic_star_border))
+            }
             listener.onFavorite(deck)
         }
     }

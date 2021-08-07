@@ -52,6 +52,30 @@
         android:textSize="22sp"
         android:background="@color/white" />
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_cards"
+        android:layout_marginTop="20dp"
+        android:indeterminateTint="@color/color_primary"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/text_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="5dp"
+        android:text="Carregando Cartas..."
+        android:textSize="18sp"
+        android:textColor="@color/color_primary"
+        android:visibility="gone"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cards"
         android:layout_width="0dp"

@@ -56,6 +56,7 @@ class ResultActivity : AppCompatActivity(), View.OnClickListener {
         bundle.putString("deckId", mDeckId)
         intent.putExtras(bundle)
         startActivity(intent)
+        finish()
     }
 
     private fun loadChart() {
@@ -64,13 +65,16 @@ class ResultActivity : AppCompatActivity(), View.OnClickListener {
         val errosrPecent: Float = (1 - correctPecent)
 
         val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(correctPecent, "de Acertos"))
-        entries.add(PieEntry(errosrPecent, "de Erros"))
-
         val colors: ArrayList<Int> = ArrayList()
 
-        colors.add(Color.parseColor("#28a745"))
-        colors.add(Color.parseColor("#dc3545"))
+        if (correctPecent != 0f) {
+            entries.add(PieEntry(correctPecent, "de Acertos"))
+            colors.add(Color.parseColor("#28a745"))
+        }
+        if (errosrPecent != 0f) {
+            entries.add(PieEntry(errosrPecent, "de Erros"))
+            colors.add(Color.parseColor("#dc3545"))
+        }
 
         val dataSet = PieDataSet(entries, "")
         dataSet.colors = colors

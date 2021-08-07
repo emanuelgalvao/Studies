@@ -25,7 +25,7 @@
         android:id="@+id/nav_deck_cards"
         android:name="com.emanuelgalvao.studies.ui.fragment.DeckCardsFragment"
         android:label="@string/cards"
-        tools:layout="@layout/deck_cards_fragment" >
+        tools:layout="@layout/fragment_deck_cards" >
         <argument
             android:name="deck"
             app:argType="com.emanuelgalvao.studies.model.Deck" />
@@ -35,7 +35,7 @@
         android:id="@+id/nav_settings"
         android:name="com.emanuelgalvao.studies.ui.fragment.SettingsFragment"
         android:label="@string/settings"
-        tools:layout="@layout/settings_fragment" />
+        tools:layout="@layout/fragment_settings" />
 
 
 </navigation>

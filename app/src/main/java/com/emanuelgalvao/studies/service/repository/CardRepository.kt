@@ -51,4 +51,14 @@ class CardRepository {
                 listener.onFailure(it.message.toString())
             }
     }
+
+    fun deleteCard(deckId: String, card: Card, listener: AsyncTaskListener<Boolean>) {
+        mFirebaseDatabase.child("cards").child(mFirebaseAuth.currentUser?.uid.toString()).child(deckId).child(card.id).removeValue()
+            .addOnSuccessListener {
+                listener.onSucess(true)
+            }
+            .addOnFailureListener {
+                listener.onFailure(it.message.toString())
+            }
+    }
 }

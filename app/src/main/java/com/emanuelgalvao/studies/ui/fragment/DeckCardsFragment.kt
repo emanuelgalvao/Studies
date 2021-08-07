@@ -19,7 +19,7 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.emanuelgalvao.studies.R
-import com.emanuelgalvao.studies.databinding.DeckCardsFragmentBinding
+import com.emanuelgalvao.studies.databinding.FragmentDeckCardsBinding
 import com.emanuelgalvao.studies.model.Card
 import com.emanuelgalvao.studies.service.listener.CardListener
 import com.emanuelgalvao.studies.ui.activity.CardsActivity
@@ -34,7 +34,7 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
 
     private val mFragmentArgs by navArgs<DeckCardsFragmentArgs>()
 
-    private var _binding: DeckCardsFragmentBinding? = null
+    private var _binding: FragmentDeckCardsBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var mViewModel: DeckCardsViewModel
@@ -44,15 +44,22 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
 
     private lateinit var mDeckId: String
 
+    private lateinit var mSelectedCard: Card
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        _binding = DeckCardsFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentDeckCardsBinding.inflate(inflater, container, false)
         val view = binding.root
 
         mViewModel = ViewModelProvider(this).get(DeckCardsViewModel::class.java)
 
         mDeckId = mFragmentArgs.deck.id
         (activity as MainActivity).supportActionBar?.title = mFragmentArgs.deck.name
+
+        binding.buttonStart.isVisible = false
+        binding.buttonAddCard.isVisible = false
+        binding.progress.isVisible = true
+        binding.textProgress.isVisible = true
 
         val recycler = binding.recyclerCards
         recycler.layoutManager = LinearLayoutManager(context)
@@ -90,7 +97,6 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
         when (v?.id) {
             R.id.button_add_card -> openCreateCard()
             R.id.button_start -> startStudies()
-            R.id.button_delete -> startStudies()
         }
     }
 
@@ -124,13 +130,19 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
     }
 
     private fun editCard(card: Card) {
+
+        mSelectedCard = card
+
         MaterialDialog(requireContext(), BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             title(R.string.edit_card)
             customView(R.layout.bottom_sheet_create_card)
             getCustomView().findViewById<TextInputEditText>(R.id.edit_front).setText(card.frontPhrase)
             getCustomView().findViewById<TextInputEditText>(R.id.edit_back).setText(card.backPhrase)
             getCustomView().findViewById<Button>(R.id.button_delete).isVisible = true
-            getCustomView().findViewById<Button>(R.id.button_delete).setOnClickListener(this@DeckCardsFragment)
+            getCustomView().findViewById<Button>(R.id.button_delete).setOnClickListener {
+                dismiss()
+                deleteCard()
+            }
             positiveButton(null, "Salvar") {
                 noAutoDismiss()
 
@@ -155,6 +167,11 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
         mViewModel.updateCard(mDeckId, card)
     }
 
+    private fun deleteCard() {
+        AlertUtils.showProgressDialog(requireContext(), "Excluindo Carta...")
+        mViewModel.deleteCard(mDeckId, mSelectedCard)
+    }
+
     private fun startStudies() {
         val intent = Intent(activity, CardsActivity::class.java)
         val bundle = Bundle()
@@ -167,6 +184,13 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
         mViewModel.cardList.observe(viewLifecycleOwner, {
             if (it.count() >= 0) {
                 mAdapter.updateList(it)
+                if (it.count() > 0)
+                    binding.buttonStart.isVisible = true
+
+                binding.buttonStart.isVisible = true
+                binding.buttonAddCard.isVisible = true
+                binding.progress.isVisible = false
+                binding.textProgress.isVisible = false
             }
         })
 
@@ -182,6 +206,15 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
         mViewModel.updateCard.observe(viewLifecycleOwner, {
             if (it.isSucess()) {
                 AlertUtils.showSnackbar(binding.root, "Carta alterada com sucesso!", ContextCompat.getColor(requireContext(), R.color.snack_green))
+            } else {
+                AlertUtils.showSnackbar(binding.root, it.getMessage(), ContextCompat.getColor(requireContext(), R.color.snack_red))
+            }
+            AlertUtils.closeProgressDialog()
+        })
+
+        mViewModel.deleteCard.observe(viewLifecycleOwner, {
+            if (it.isSucess()) {
+                AlertUtils.showSnackbar(binding.root, "Carta excluída com sucesso!", ContextCompat.getColor(requireContext(), R.color.snack_green))
             } else {
                 AlertUtils.showSnackbar(binding.root, it.getMessage(), ContextCompat.getColor(requireContext(), R.color.snack_red))
             }

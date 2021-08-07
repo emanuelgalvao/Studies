@@ -9,6 +9,28 @@
     android:orientation="vertical"
     tools:context=".ui.activity.CardsActivity">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_cards"
+        android:layout_marginTop="20dp"
+        android:indeterminateTint="@color/color_primary"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/text_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Carregando Cartas..."
+        android:textSize="18sp"
+        android:textColor="@color/color_primary"
+        android:textAlignment="center"
+        android:visibility="gone"/>
+
     <com.wajahatkarim3.easyflipview.EasyFlipView
         android:id="@+id/flip_view"
         android:layout_width="match_parent"
@@ -42,6 +64,7 @@
     </com.wajahatkarim3.easyflipview.EasyFlipView>
 
     <LinearLayout
+        android:id="@+id/linear_buttons"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

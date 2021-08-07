@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -42,6 +43,9 @@ class DecksFragment : Fragment(), View.OnClickListener {
 
         mViewModel = ViewModelProvider(this).get(DecksViewModel::class.java)
 
+        binding.buttonAddDeck.isVisible = false
+        binding.progress.isVisible = true
+        binding.textProgress.isVisible = true
 
         val recycler = binding.recyclerDecks
         recycler.layoutManager = LinearLayoutManager(context)
@@ -100,7 +104,6 @@ class DecksFragment : Fragment(), View.OnClickListener {
                 dialog.setActionButtonEnabled(WhichButton.POSITIVE, isValid)
             }
             positiveButton(null, "Criar") {
-                //noAutoDismiss()
                 createDeck(getInputField().text.toString())
             }
             negativeButton(null, "Cancelar")
@@ -116,6 +119,10 @@ class DecksFragment : Fragment(), View.OnClickListener {
         mViewModel.deckList.observe(viewLifecycleOwner, {
             if (it.count() >= 0) {
                 mAdapter.updateList(it)
+
+                binding.buttonAddDeck.isVisible = true
+                binding.progress.isVisible = false
+                binding.textProgress.isVisible = false
             }
         })
 

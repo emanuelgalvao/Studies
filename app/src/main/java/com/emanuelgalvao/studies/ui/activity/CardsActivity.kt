@@ -1,12 +1,16 @@
 package com.emanuelgalvao.studies.ui.activity
 
+import android.animation.Animator
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.emanuelgalvao.studies.R
 import com.emanuelgalvao.studies.databinding.ActivityCardsBinding
@@ -25,6 +29,11 @@ class CardsActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+        binding.progress.isVisible = true
+        binding.textProgress.isVisible = true
+        binding.flipView.isVisible = false
+        binding.linearButtons.isVisible = false
 
         mDeckId = intent.extras!!.getString("deckId").toString()
 
@@ -46,7 +55,7 @@ class CardsActivity : AppCompatActivity(), View.OnClickListener {
             .setTitle("SAIR")
             .setMessage("Tem certeza que deseja cancelar o estudo?")
             .setPositiveButton("Sim") { _, _ -> run { finish() } }
-            .setNeutralButton("Não") { _, _ -> }
+            .setNegativeButton("Não") { _, _ -> }
 
         builder.show()
     }
@@ -106,5 +115,9 @@ class CardsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun startStudies() {
         mViewModel.getRandomCard()
+        binding.progress.isVisible = false
+        binding.textProgress.isVisible = false
+        binding.flipView.isVisible = true
+        binding.linearButtons.isVisible = true
     }
 }

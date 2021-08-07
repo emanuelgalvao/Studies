@@ -21,6 +21,9 @@ class DeckCardsViewModel : ViewModel() {
     private var mUpdateCard = MutableLiveData<ValidationListener>()
     val updateCard: LiveData<ValidationListener> = mUpdateCard
 
+    private var mDeleteCard = MutableLiveData<ValidationListener>()
+    val deleteCard: LiveData<ValidationListener> = mDeleteCard
+
     fun getAllCards(deckId: String) {
         mCardRepository.getAllCards(deckId, object: AsyncTaskListener<List<Card>> {
             override fun onSucess(model: List<Card>) {
@@ -56,6 +59,20 @@ class DeckCardsViewModel : ViewModel() {
             override fun onFailure(message: String) {
                 mUpdateCard.value = ValidationListener(message)
             }
+        })
+    }
+
+    fun deleteCard(deckId: String, card: Card) {
+        mCardRepository.deleteCard(deckId, card, object: AsyncTaskListener<Boolean> {
+            override fun onSucess(model: Boolean) {
+                getAllCards(deckId)
+                mDeleteCard.value = ValidationListener()
+            }
+
+            override fun onFailure(message: String) {
+                mDeleteCard.value = ValidationListener(message)
+            }
+
         })
     }
 }

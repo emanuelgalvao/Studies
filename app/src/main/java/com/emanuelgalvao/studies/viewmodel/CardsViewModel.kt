@@ -63,7 +63,7 @@ class CardsViewModel: ViewModel()  {
             val resultUpdate: StudyResult? = mResult.value
             if (resultUpdate != null) {
                 resultUpdate.correctCardsNumber = resultUpdate.correctCardsNumber + 1
-                mResult.value = resultUpdate!!
+                mResult.value = resultUpdate
             }
         }
 
