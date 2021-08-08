@@ -4,20 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/activity_padding"
     tools:context=".ui.fragment.HomeFragment">
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/text_hello"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Olá, Emanuel!"
+        android:textColor="@color/color_primary"
+        android:textSize="22sp"
+        android:background="@color/white" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_hello"
+        android:layout_marginTop="20dp"
+        android:background="@color/color_primary" />
+
+    <TextView
+        android:id="@+id/text_favorite_decks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_hello"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/favorites_decks"
+        android:textColor="@color/color_primary"
+        android:textAllCaps="true"
         android:textAlignment="center"
-        android:text="Hello you're in home fragment!"
-        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:background="@color/white" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_favorite_decks"
+        android:layout_marginTop="20dp"
+        android:indeterminateTint="@color/color_primary"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/text_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="5dp"
+        android:text="Carregando Baralhos..."
+        android:textSize="18sp"
+        android:textColor="@color/color_primary"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_decks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_favorite_decks"
+        app:layout_constraintBottom_toTopOf="@id/button_timer"
+        tools:listitem="@layout/adapter_deck" />
+
+    <Button
+        android:id="@+id/button_timer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/go_to_timer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

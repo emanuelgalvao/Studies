@@ -8,9 +8,17 @@ class PrefUtil {
 
     companion object {
 
-        fun getTimerLength(context: Context): Int {
-            //placeholder
-            return 1
+        private const val TIMER_LENGTH_ID = "com.emanuelgalvao.studies.timer_length"
+
+        fun getTimerLength(context: Context): Long {
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferences.getLong(TIMER_LENGTH_ID, 25)
+        }
+
+        fun setTimerLength(seconds: Long, context: Context) {
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(TIMER_LENGTH_ID, seconds)
+            editor.apply()
         }
 
         private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID = "com.emanuelgalvao.studies.previous_timer_length"
@@ -51,6 +59,19 @@ class PrefUtil {
         fun setSecondsRemaining(secondsRemaining: Long, context: Context) {
             val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
             editor.putLong(SECONDS_REMAINING_ID, secondsRemaining)
+            editor.apply()
+        }
+
+        private const val ALARM_SET_TIME_ID = "com.emanuelgalvao.studies.backgrounded_time"
+
+        fun getAlarmSetTime(context: Context): Long {
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferences.getLong(ALARM_SET_TIME_ID, 0)
+        }
+
+        fun setAlarmSetTime(time: Long, context: Context) {
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(ALARM_SET_TIME_ID, time)
             editor.apply()
         }
     }

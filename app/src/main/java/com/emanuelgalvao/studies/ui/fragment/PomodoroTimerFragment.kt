@@ -1,20 +1,59 @@
 package com.emanuelgalvao.studies.ui.fragment
 
+import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.afollestad.materialdialogs.LayoutMode
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.WhichButton
+import com.afollestad.materialdialogs.actions.setActionButtonEnabled
+import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.afollestad.materialdialogs.input.getInputField
+import com.afollestad.materialdialogs.input.input
 import com.emanuelgalvao.studies.R
 import com.emanuelgalvao.studies.databinding.FragmentPomodoroTimerBinding
 import com.emanuelgalvao.studies.model.enum.TimerState
+import com.emanuelgalvao.studies.service.receiver.TimerExpiredReceiver
+import com.emanuelgalvao.studies.util.NotificationUtil
 import com.emanuelgalvao.studies.util.PrefUtil
 import com.emanuelgalvao.studies.viewmodel.PomodoroTimerViewModel
+import java.util.*
 
 class PomodoroTimerFragment : Fragment(), View.OnClickListener {
+
+    companion object {
+        fun setAlarm(context: Context, nowSeconds: Long, secondsRemaining: Long): Long {
+            val wakeUpTime = (nowSeconds + secondsRemaining) * 1000
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(context, TimerExpiredReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, wakeUpTime, pendingIntent)
+            PrefUtil.setAlarmSetTime(nowSeconds, context)
+            return wakeUpTime
+        }
+
+        fun removeAlarm(context: Context) {
+            val intent = Intent(context, TimerExpiredReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(pendingIntent)
+            PrefUtil.setAlarmSetTime(0, context)
+        }
+
+        val nowSeconds: Long
+            get() = Calendar.getInstance().timeInMillis / 1000
+    }
 
     private lateinit var mTimer: CountDownTimer
     private var mTimerLengthSeconds = 0L
@@ -43,7 +82,8 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
 
         initializeTimer()
 
-        //TODO: remove background timer and hide notification
+        removeAlarm(requireContext())
+        NotificationUtil.hideTimerNotification(requireContext())
     }
 
     override fun onPause() {
@@ -51,10 +91,11 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
 
         if (mTimerState == TimerState.RUNNING) {
             mTimer.cancel()
-            //TODO: start background timer and show notification
+            val wakeUpTime = setAlarm(requireContext(), nowSeconds, mSecondsRemaining)
+            NotificationUtil.showTimerRunning(requireContext(), wakeUpTime)
         } else if (mTimerState == TimerState.PAUSED) {
             mTimer.cancel()
-            //TODO: show notification
+            NotificationUtil.showTimerPaused(requireContext())
         }
 
         PrefUtil.setPreviousTimerLengthSeconds(mTimerLengthSeconds, requireContext())
@@ -78,6 +119,14 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
             mTimerLengthSeconds
         }
 
+        val alarmSetTime = PrefUtil.getAlarmSetTime(requireContext())
+        if (alarmSetTime > 0) {
+            mSecondsRemaining -= nowSeconds - alarmSetTime
+        }
+
+        if (mSecondsRemaining <= 0) {
+            onTimerFinished()
+        }
         if (mTimerState == TimerState.RUNNING) {
             startTimer()
         }
@@ -104,6 +153,7 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
         binding.fabStart.setOnClickListener(this)
         binding.fabPause.setOnClickListener(this)
         binding.fabStop.setOnClickListener(this)
+        binding.buttonTimerSettings.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -111,6 +161,7 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
             R.id.fab_start -> startTimer()
             R.id.fab_pause -> pauseTimer()
             R.id.fab_stop -> stopTimer()
+            R.id.button_timer_settings -> openTimerSettings()
         }
     }
 
@@ -161,6 +212,8 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
                 binding.fabPause.isEnabled = true
                 binding.fabPause.isVisible = true
                 binding.fabStop.isEnabled = true
+                binding.fabStop.isVisible = true
+                binding.buttonTimerSettings.isVisible = false
             }
             TimerState.PAUSED -> {
                 binding.fabStart.isEnabled = true
@@ -168,6 +221,8 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
                 binding.fabPause.isEnabled = false
                 binding.fabPause.isVisible = false
                 binding.fabStop.isEnabled = true
+                binding.fabStop.isVisible = true
+                binding.buttonTimerSettings.isVisible = false
             }
             TimerState.STOPPED -> {
                 binding.fabStart.isEnabled = true
@@ -175,6 +230,8 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
                 binding.fabPause.isEnabled = false
                 binding.fabPause.isVisible = false
                 binding.fabStop.isEnabled = false
+                binding.fabStop.isVisible = false
+                binding.buttonTimerSettings.isVisible = true
             }
         }
     }
@@ -188,6 +245,25 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
     private fun stopTimer() {
         mTimer.cancel()
         onTimerFinished()
+    }
+
+    @SuppressLint("CheckResult")
+    private fun openTimerSettings() {
+        MaterialDialog(requireContext(), BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+            title(R.string.timer_settings)
+            input(hintRes = R.string.time_minutes, waitForPositiveButton = true, inputType = InputType.TYPE_CLASS_NUMBER, maxLength = 2) { dialog, text ->
+                val inputField = dialog.getInputField()
+                val isValid = text.isNotEmpty()
+
+                inputField.error = if (isValid) null else "Preencha o tempo de estudo!"
+                dialog.setActionButtonEnabled(WhichButton.POSITIVE, isValid)
+            }
+            positiveButton(null, "Salvar") {
+                PrefUtil.setTimerLength(getInputField().text.toString().toLong(), requireContext())
+                onResume()
+            }
+            negativeButton(null, "Cancelar")
+        }
     }
 
 }

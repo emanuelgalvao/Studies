@@ -6,5 +6,7 @@ interface DeckListener {
 
     fun onFavorite(deck: Deck)
 
+    fun onEdit(deck: Deck)
+
     fun onClick(deck: Deck)
 }

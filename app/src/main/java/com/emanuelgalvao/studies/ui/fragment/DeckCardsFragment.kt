@@ -184,10 +184,8 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
         mViewModel.cardList.observe(viewLifecycleOwner, {
             if (it.count() >= 0) {
                 mAdapter.updateList(it)
-                if (it.count() > 0)
-                    binding.buttonStart.isVisible = true
 
-                binding.buttonStart.isVisible = true
+                binding.buttonStart.isVisible = it.count() > 0
                 binding.buttonAddCard.isVisible = true
                 binding.progress.isVisible = false
                 binding.textProgress.isVisible = false

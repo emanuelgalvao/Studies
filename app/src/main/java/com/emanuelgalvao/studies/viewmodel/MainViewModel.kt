@@ -16,6 +16,10 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     val user: LiveData<User> = mUser
 
     fun getUser() {
-        mUser.value = User("", mUserRepository.getEmail(), mUserRepository.getUserName())
+        mUser.value = User("", mUserRepository.getUserName(), mUserRepository.getEmail())
+    }
+
+    fun logout() {
+        mUserRepository.logout()
     }
 }

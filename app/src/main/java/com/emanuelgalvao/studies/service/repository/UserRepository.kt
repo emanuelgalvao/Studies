@@ -20,7 +20,7 @@ class UserRepository(val context: Context) {
         val currentUser = mFirebaseAuth.currentUser
 
         if(currentUser != null){
-            val user = User(currentUser.uid, currentUser.email.toString(), mSharedPreferences.get("name"))
+            val user = User(currentUser.uid, mSharedPreferences.get("name"), currentUser.email.toString())
 
             listener.onSucess(user)
         } else {
@@ -38,7 +38,7 @@ class UserRepository(val context: Context) {
             if (task.isSuccessful) {
                 mFirebaseDatabase.child("users").child(mFirebaseAuth.currentUser?.uid.toString()).child("name").get().addOnCompleteListener {
 
-                    val user = User(mFirebaseAuth.currentUser?.uid.toString(), mFirebaseAuth.currentUser?.email.toString(), it.result?.value.toString())
+                    val user = User(mFirebaseAuth.currentUser?.uid.toString(), it.result?.value.toString(), mFirebaseAuth.currentUser?.email.toString(),)
 
                     mSharedPreferences.store("uid", user.uid)
                     mSharedPreferences.store("email", user.email)
@@ -56,7 +56,7 @@ class UserRepository(val context: Context) {
 
         mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val user = User(mFirebaseAuth.currentUser?.uid.toString(), mFirebaseAuth.currentUser?.email.toString(), name)
+                val user = User(mFirebaseAuth.currentUser?.uid.toString(), name, mFirebaseAuth.currentUser?.email.toString())
 
                 mFirebaseDatabase.child("users").child(user.uid).child("name").setValue(name).addOnCompleteListener {
                     mSharedPreferences.store("uid", user.uid)

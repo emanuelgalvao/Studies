@@ -12,10 +12,11 @@ class DeckAdapter: RecyclerView.Adapter<DeckViewHolder>() {
 
     private var mDeckList: List<Deck> = arrayListOf()
     private lateinit var mDeckListener: DeckListener
+    private var mShowActions: Boolean = true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeckViewHolder {
         val item = LayoutInflater.from(parent.context).inflate(R.layout.adapter_deck, parent, false)
-        return DeckViewHolder(item, mDeckListener)
+        return DeckViewHolder(item, mDeckListener, mShowActions)
     }
 
     override fun onBindViewHolder(holder: DeckViewHolder, position: Int) {
@@ -28,6 +29,10 @@ class DeckAdapter: RecyclerView.Adapter<DeckViewHolder>() {
 
     fun attachListener(listener: DeckListener) {
         mDeckListener = listener
+    }
+
+    fun setShowActions(show: Boolean) {
+        mShowActions = show
     }
 
     fun updateList(list: List<Deck>) {

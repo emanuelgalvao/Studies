@@ -32,6 +32,13 @@
     <string name="pomodoro_timer">Pomodoro Timer</string>
     <string name="timer_placeholder">00:00</string>
     <string name="settings_timer">Configurações Timer</string>
+    <string name="time_minutes">Tempo (minutos)</string>
+    <string name="timer_settings">Configuração Timer</string>
+    <string name="favorites_decks">Baralhos favoritos</string>
+    <string name="go_to_timer">Ir para o timer de estudo</string>
+    <string name="logout">Sair</string>
+    <string name="delete_deck">Excluir baralho</string>
+    <string name="edit_deck">Editar baralho</string>
 
     <!-- Not treated-->
 

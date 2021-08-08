@@ -24,7 +24,8 @@
 
     <group
         android:id="@+id/menu_secondary"
-        android:checkableBehavior="none">
+        android:checkableBehavior="none"
+        android:visible="false">
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
@@ -41,6 +42,15 @@
             android:icon="@drawable/ic_rate"
             android:visible="false"
             android:title="@string/rate_app" />
+    </group>
+
+    <group
+        android:id="@+id/menu_tertiary"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit"
+            android:title="@string/logout" />
     </group>
 
 </menu>

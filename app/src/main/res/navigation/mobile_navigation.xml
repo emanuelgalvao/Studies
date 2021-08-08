@@ -9,7 +9,14 @@
         android:id="@+id/nav_home"
         android:name="com.emanuelgalvao.studies.ui.fragment.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_deck_cards"
+            app:destination="@id/nav_deck_cards" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_pomodoro"
+            app:destination="@id/nav_pomodoro" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_decks"

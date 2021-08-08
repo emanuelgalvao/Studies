@@ -3,6 +3,7 @@ package com.emanuelgalvao.studies.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.emanuelgalvao.studies.model.Card
 import com.emanuelgalvao.studies.model.Deck
 import com.emanuelgalvao.studies.service.listener.AsyncTaskListener
 import com.emanuelgalvao.studies.service.listener.ValidationListener
@@ -20,6 +21,9 @@ class DecksViewModel : ViewModel() {
 
     private var mUpdateDeck = MutableLiveData<ValidationListener>()
     val updateDeck: LiveData<ValidationListener> = mUpdateDeck
+
+    private var mDeleteDeck = MutableLiveData<ValidationListener>()
+    val deleteDeck: LiveData<ValidationListener> = mDeleteDeck
 
     fun getAllDecks() {
         mDeckRepository.getAllDecks(object: AsyncTaskListener<List<Deck>> {
@@ -57,6 +61,20 @@ class DecksViewModel : ViewModel() {
             override fun onFailure(message: String) {
                 mUpdateDeck.value = ValidationListener(message)
             }
+        })
+    }
+
+    fun deleteDeck(deck: Deck) {
+        mDeckRepository.deleteDeck(deck, object: AsyncTaskListener<Boolean> {
+            override fun onSucess(model: Boolean) {
+                getAllDecks()
+                mDeleteDeck.value = ValidationListener()
+            }
+
+            override fun onFailure(message: String) {
+                mDeleteDeck.value = ValidationListener(message)
+            }
+
         })
     }
 }
