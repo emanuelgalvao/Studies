@@ -22,6 +22,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_pomodoro"
+        android:name="com.emanuelgalvao.studies.ui.fragment.PomodoroTimerFragment"
+        android:label="@string/pomodoro_timer"
+        tools:layout="@layout/fragment_pomodoro_timer" />
+
+    <fragment
         android:id="@+id/nav_deck_cards"
         android:name="com.emanuelgalvao.studies.ui.fragment.DeckCardsFragment"
         android:label="@string/cards"

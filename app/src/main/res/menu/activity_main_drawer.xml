@@ -15,6 +15,11 @@
             android:id="@+id/nav_decks"
             android:icon="@drawable/ic_deck"
             android:title="@string/decks" />
+
+        <item
+            android:id="@+id/nav_pomodoro"
+            android:icon="@drawable/ic_clock"
+            android:title="@string/pomodoro_timer" />
     </group>
 
     <group
