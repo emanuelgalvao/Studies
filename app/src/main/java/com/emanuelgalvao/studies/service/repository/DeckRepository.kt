@@ -36,6 +36,8 @@ class DeckRepository {
             override fun onCancelled(error: DatabaseError) {}
 
         })
+
+        listener.onSucess(deckList)
     }
 
     fun getFavoriteDecks(listener: AsyncTaskListener<List<Deck>>) {
@@ -57,6 +59,8 @@ class DeckRepository {
             override fun onCancelled(error: DatabaseError) {}
 
         })
+
+        listener.onSucess(deckList)
     }
 
     fun createDeck(deckName: String, listener: AsyncTaskListener<Boolean>) {
