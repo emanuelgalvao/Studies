@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@id/progress"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="5dp"
-        android:text="Carregando Cartas..."
+        android:text="@string/loading_cards"
         android:textSize="18sp"
         android:textColor="@color/color_primary"
         android:visibility="gone"/>

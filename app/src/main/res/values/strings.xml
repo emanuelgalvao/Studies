@@ -39,6 +39,12 @@
     <string name="logout">Sair</string>
     <string name="delete_deck">Excluir baralho</string>
     <string name="edit_deck">Editar baralho</string>
+    <string name="display_corrects">Exibições: 100 - Acertos: 90</string>
+    <string name="card_placeholder">2+2</string>
+    <string name="deck_placeholder">Baralho 1</string>
+    <string name="loading_cards">Carregando Cartas...</string>
+    <string name="loading_decks">Criando baralho...</string>
+    <string name="text_hello">Olá, Emanuel!</string>
 
     <!-- Not treated-->
 

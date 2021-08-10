@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <solid android:color="@color/button_red" />
-    <corners android:radius="35dp" />
-
-</shape>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/white"
+    android:radius="35dp">
+    <item>
+        <shape>
+            <solid android:color="@color/button_red" />
+            <corners android:radius="35dp" />
+        </shape>
+    </item>
+</ripple>

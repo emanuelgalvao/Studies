@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Carregando Cartas..."
+        android:text="@string/loading_cards"
         android:textSize="18sp"
         android:textColor="@color/color_primary"
         android:textAlignment="center"
@@ -49,8 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shape_card_back"
+            android:padding="10dp"
             android:gravity="center"
-            android:text="2+2"
+            android:text="@string/card_placeholder"
             android:textSize="24sp" />
 
         <TextView
@@ -58,8 +59,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shape_card_front"
+            android:padding="10dp"
             android:gravity="center"
-            android:text="4"
+            android:text="@string/card_placeholder"
             android:textSize="24sp" />
 
     </com.wajahatkarim3.easyflipview.EasyFlipView>

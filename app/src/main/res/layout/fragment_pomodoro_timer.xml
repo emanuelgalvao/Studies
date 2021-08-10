@@ -41,7 +41,10 @@
         app:layout_constraintTop_toBottomOf="@id/progress_timer"
         android:backgroundTint="@color/color_primary"
         android:src="@drawable/ic_play"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_pause"
@@ -52,7 +55,10 @@
         app:layout_constraintTop_toBottomOf="@id/progress_timer"
         android:backgroundTint="@color/color_primary"
         android:src="@drawable/ic_pause"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_stop"
@@ -63,7 +69,10 @@
         app:layout_constraintTop_toBottomOf="@id/progress_timer"
         android:backgroundTint="@color/color_primary"
         android:src="@drawable/ic_stop"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <Button
         android:id="@+id/button_timer_settings"

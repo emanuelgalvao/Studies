@@ -30,14 +30,14 @@
                     android:id="@+id/text_card_front"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2+2"
+                    android:text="@string/card_placeholder"
                     android:textSize="22sp"/>
 
                 <TextView
                     android:id="@+id/text_card_statistics"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Exibições: 100 - Acertos: 90"
+                    android:text="@string/display_corrects"
                     android:textSize="18sp"/>
 
             </LinearLayout>
@@ -52,7 +52,10 @@
                 app:layout_constraintLeft_toRightOf="@id/linear_card_info"
                 android:paddingHorizontal="@dimen/card_padding"
                 android:src="@drawable/ic_edit"
-                app:tint="@color/color_primary" />
+                app:tint="@color/color_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
