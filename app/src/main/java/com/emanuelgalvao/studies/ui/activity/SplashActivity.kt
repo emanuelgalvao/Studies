@@ -6,17 +6,23 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.ViewModelProvider
-import com.emanuelgalvao.studies.R
+import com.emanuelgalvao.studies.databinding.ActivitySplashBinding
+import com.emanuelgalvao.studies.util.ElementUtils
 import com.emanuelgalvao.studies.viewmodel.SplashViewModel
 
 class SplashActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivitySplashBinding
     private lateinit var mViewModel: SplashViewModel
     private var logged = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        ElementUtils.selectRandomBackground()
+        binding.imageBackground.setImageResource(ElementUtils.getSelectedBackground())
 
         mViewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
 

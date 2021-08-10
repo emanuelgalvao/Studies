@@ -29,7 +29,7 @@
     <string name="placeholder_errors">0 Erros</string>
     <string name="study_again">Estudar novamente</string>
     <string name="back_to_deck">Voltar para o baralho</string>
-    <string name="pomodoro_timer">Pomodoro Timer</string>
+    <string name="pomodoro_timer">Timer de Estudo</string>
     <string name="timer_placeholder">00:00</string>
     <string name="settings_timer">Configurações Timer</string>
     <string name="time_minutes">Tempo (minutos)</string>

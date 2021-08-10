@@ -2,23 +2,20 @@ package com.emanuelgalvao.studies.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuView
-import androidx.lifecycle.ViewModelProvider
 import com.emanuelgalvao.studies.R
 import com.emanuelgalvao.studies.databinding.ActivityMainBinding
 import com.emanuelgalvao.studies.viewmodel.MainViewModel
-import kotlin.math.log
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +32,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = this.resources.getColor(R.color.color_primary_dark, theme)
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
@@ -71,10 +72,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-        navView.menu.findItem(R.id.nav_logout).setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener {
+        navView.menu.findItem(R.id.nav_logout).setOnMenuItemClickListener {
             logout()
             false
-        })
+        }
     }
 
     private fun logout() {

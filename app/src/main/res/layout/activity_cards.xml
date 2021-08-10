@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_padding"
+    android:paddingHorizontal="@dimen/activity_padding"
+    android:paddingVertical="48dp"
     android:orientation="vertical"
     tools:context=".ui.activity.CardsActivity">
 

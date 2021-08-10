@@ -1,5 +1,6 @@
 package com.emanuelgalvao.studies.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -20,6 +21,7 @@ class ResultActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mResult: StudyResult
     private lateinit var mDeckId: String
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)

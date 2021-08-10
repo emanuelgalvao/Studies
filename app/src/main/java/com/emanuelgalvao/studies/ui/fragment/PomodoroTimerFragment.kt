@@ -251,7 +251,7 @@ class PomodoroTimerFragment : Fragment(), View.OnClickListener {
     private fun openTimerSettings() {
         MaterialDialog(requireContext(), BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             title(R.string.timer_settings)
-            input(hintRes = R.string.time_minutes, waitForPositiveButton = true, inputType = InputType.TYPE_CLASS_NUMBER, maxLength = 2) { dialog, text ->
+            input(hintRes = R.string.time_minutes, waitForPositiveButton = true, inputType = InputType.TYPE_CLASS_NUMBER, maxLength = 2, prefill = PrefUtil.getTimerLength(requireContext()).toString()) { dialog, text ->
                 val inputField = dialog.getInputField()
                 val isValid = text.isNotEmpty()
 

@@ -22,9 +22,16 @@
     <!-- Text -->
     <color name="text_red">#dc3545</color>
     <color name="text_green">#28a745</color>
+    <color name="text_white">#ffffff</color>
 
     <!-- Snackbar -->
     <color name="snack_red">#dc3545</color>
     <color name="snack_green">#28a745</color>
+
+    <!-- Input -->
+    <color name="input_transparent">#BBFFFFFF</color>
+
+    <!-- Button -->
+    <color name="button_transparent">#dd007bff</color>
 
 </resources>
