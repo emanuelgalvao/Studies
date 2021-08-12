@@ -45,6 +45,10 @@
     <string name="loading_cards">Carregando Cartas...</string>
     <string name="loading_decks">Criando baralho...</string>
     <string name="text_hello">Olá, Emanuel!</string>
+    <string name="dotted">&#8226;</string>
+    <string name="skip">Pular</string>
+    <string name="next">Próximo</string>
+    <string name="placeholder">Teste</string>
 
     <!-- Not treated-->
 
