@@ -18,6 +18,8 @@
     <color name="card_front_border">#CCCCCC</color>
     <color name="card_back_color">#EDEDED</color>
     <color name="card_back_border">#DFDEDE</color>
+    <color name="start_gradient">#085FBD</color>
+    <color name="end_gradient">#96C7FC</color>
 
     <!-- Text -->
     <color name="text_red">#dc3545</color>

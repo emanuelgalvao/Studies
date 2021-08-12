@@ -34,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
             val intent: Intent = if (logged) {
                 Intent(this, MainActivity::class.java)
             } else {
-                Intent(this, LoginActivity::class.java)
+                Intent(this, ViewPagerActivity::class.java)
             }
             startActivity(intent)
             finish()
