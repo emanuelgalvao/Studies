@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
 
     <!-- App colors -->
     <color name="color_primary">#007bff</color>
@@ -18,6 +19,8 @@
     <color name="card_front_border">#CCCCCC</color>
     <color name="card_back_color">#EDEDED</color>
     <color name="card_back_border">#DFDEDE</color>
+    <color name="start_gradient">#085FBD</color>
+    <color name="end_gradient">#96C7FC</color>
 
     <!-- Text -->
     <color name="text_red">#dc3545</color>
@@ -33,5 +36,8 @@
 
     <!-- Button -->
     <color name="button_transparent">#dd007bff</color>
+
+    <!-- ViewPager -->
+    <color name="dots_color">#024E9F</color>
 
 </resources>
