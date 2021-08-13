@@ -42,29 +42,32 @@
         android:textSize="22sp"
         android:background="@color/white" />
 
-    <ProgressBar
-        android:id="@+id/progress"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_decks"
-        android:layout_marginTop="20dp"
-        android:indeterminateTint="@color/color_primary"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@id/text_decks">
 
-    <TextView
-        android:id="@+id/text_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progress"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="5dp"
-        android:text="@string/loading_decks"
-        android:textSize="18sp"
-        android:textColor="@color/color_primary"
-        android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+            <include layout="@layout/shimmer_placeholder_adapter_deck" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_decks"
@@ -74,6 +77,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_decks"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/adapter_deck" />
+        tools:listitem="@layout/adapter_deck"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

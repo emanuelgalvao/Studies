@@ -70,4 +70,7 @@ dependencies {
 
     //Progress Material
     implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
+
+    //Shimmer Effect
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 }

@@ -58,8 +58,6 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
 
         binding.buttonStart.isVisible = false
         binding.buttonAddCard.isVisible = false
-        binding.progress.isVisible = true
-        binding.textProgress.isVisible = true
 
         val recycler = binding.recyclerCards
         recycler.layoutManager = LinearLayoutManager(context)
@@ -79,8 +77,14 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
+        binding.shimmerLayout.startShimmerAnimation()
         mViewModel.getAllCards(mDeckId)
         mAdapter.attachListener(mDeckListener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.shimmerLayout.stopShimmerAnimation()
     }
 
     override fun onDestroyView() {
@@ -187,8 +191,9 @@ class DeckCardsFragment : Fragment(), View.OnClickListener {
 
                 binding.buttonStart.isVisible = it.count() > 0
                 binding.buttonAddCard.isVisible = true
-                binding.progress.isVisible = false
-                binding.textProgress.isVisible = false
+                binding.shimmerLayout.stopShimmerAnimation()
+                binding.shimmerLayout.visibility = View.GONE
+                binding.recyclerCards.visibility = View.VISIBLE
             }
         })
 

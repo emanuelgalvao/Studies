@@ -52,29 +52,29 @@
         android:textSize="22sp"
         android:background="@color/white" />
 
-    <ProgressBar
-        android:id="@+id/progress"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_cards"
-        android:layout_marginTop="20dp"
-        android:indeterminateTint="@color/color_primary"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@id/text_cards">
 
-    <TextView
-        android:id="@+id/text_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progress"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="5dp"
-        android:text="@string/loading_cards"
-        android:textSize="18sp"
-        android:textColor="@color/color_primary"
-        android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_placeholder_adapter_card" />
+            <include layout="@layout/shimmer_placeholder_adapter_card" />
+            <include layout="@layout/shimmer_placeholder_adapter_card" />
+            <include layout="@layout/shimmer_placeholder_adapter_card" />
+            <include layout="@layout/shimmer_placeholder_adapter_card" />
+            <include layout="@layout/shimmer_placeholder_adapter_card" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cards"
@@ -83,6 +83,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_cards"
-        tools:listitem="@layout/adapter_card" />
+        tools:listitem="@layout/adapter_card"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
