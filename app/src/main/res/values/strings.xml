@@ -7,14 +7,22 @@
     <string name="settings">Configurações</string>
     <string name="send_comment">Enviar comentário</string>
     <string name="rate_app">Avaliar aplicativo</string>
+    <string name="logout">Sair</string>
 
     <!-- Login Activity -->
     <string name="email">Email</string>
     <string name="password">Senha</string>
     <string name="enter">Entrar</string>
     <string name="register_login">Registrar-se</string>
+
+    <!-- Register Activity -->
     <string name="name">Nome</string>
     <string name="register">Cadastrar</string>
+
+    <!-- Main Activity -->
+    <string name="text_hello">Olá, Emanuel!</string>
+
+    <!-- Cards and Decks -->
     <string name="new_deck">Novo Baralho</string>
     <string name="new_card">Nova carta</string>
     <string name="edit_card">Editar carta</string>
@@ -29,14 +37,7 @@
     <string name="placeholder_errors">0 Erros</string>
     <string name="study_again">Estudar novamente</string>
     <string name="back_to_deck">Voltar para o baralho</string>
-    <string name="pomodoro_timer">Timer de Estudo</string>
-    <string name="timer_placeholder">00:00</string>
-    <string name="settings_timer">Configurações Timer</string>
-    <string name="time_minutes">Tempo (minutos)</string>
-    <string name="timer_settings">Configuração Timer</string>
     <string name="favorites_decks">Baralhos favoritos</string>
-    <string name="go_to_timer">Ir para o timer de estudo</string>
-    <string name="logout">Sair</string>
     <string name="delete_deck">Excluir baralho</string>
     <string name="edit_deck">Editar baralho</string>
     <string name="display_corrects">Exibições: 100 - Acertos: 90</string>
@@ -44,12 +45,19 @@
     <string name="deck_placeholder">Baralho 1</string>
     <string name="loading_cards">Carregando Cartas...</string>
     <string name="loading_decks">Criando baralho...</string>
-    <string name="text_hello">Olá, Emanuel!</string>
+
+    <!-- Pomodoro Timer -->
+    <string name="pomodoro_timer">Timer de Estudo</string>
+    <string name="timer_placeholder">00:00</string>
+    <string name="settings_timer">Configurações Timer</string>
+    <string name="time_minutes">Tempo (minutos)</string>
+    <string name="timer_settings">Configuração Timer</string>
+    <string name="go_to_timer">Ir para o timer de estudo</string>
+
+    <!-- View Pager -->
     <string name="dotted">&#8226;</string>
     <string name="skip">Pular</string>
     <string name="next">Próximo</string>
     <string name="placeholder">Teste</string>
-
-    <!-- Not treated-->
 
 </resources>

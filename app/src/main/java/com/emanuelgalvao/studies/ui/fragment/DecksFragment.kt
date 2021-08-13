@@ -50,8 +50,6 @@ class DecksFragment : Fragment(), View.OnClickListener {
         mViewModel = ViewModelProvider(this).get(DecksViewModel::class.java)
 
         binding.buttonAddDeck.isVisible = false
-        binding.progress.isVisible = true
-        binding.textProgress.isVisible = true
 
         val recycler = binding.recyclerDecks
         recycler.layoutManager = LinearLayoutManager(context)
@@ -83,12 +81,14 @@ class DecksFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
+        binding.shimmerLayout.startShimmerAnimation()
         mViewModel.getAllDecks()
         mAdapter.attachListener(mDeckListener)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.shimmerLayout.stopShimmerAnimation()
         _binding = null
     }
 
@@ -179,8 +179,9 @@ class DecksFragment : Fragment(), View.OnClickListener {
                 mAdapter.updateList(it)
 
                 binding.buttonAddDeck.isVisible = true
-                binding.progress.isVisible = false
-                binding.textProgress.isVisible = false
+                binding.shimmerLayout.stopShimmerAnimation()
+                binding.shimmerLayout.visibility = View.GONE
+                binding.recyclerDecks.visibility = View.VISIBLE
             }
         })
 

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -33,9 +32,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         mViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        binding.progress.isVisible = true
-        binding.textProgress.isVisible = true
-
         mAdapter.setShowActions(false)
 
         val recycler = binding.recyclerDecks
@@ -62,12 +58,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
+        binding.shimmerLayout.startShimmerAnimation()
         mViewModel.getFavoriteDecks()
         mAdapter.attachListener(mDeckListener)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.shimmerLayout.stopShimmerAnimation()
         _binding = null
     }
 
@@ -89,8 +87,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         mViewModel.deckList.observe(viewLifecycleOwner, {
             if (it.count() >= 0) {
                 mAdapter.updateList(it)
-                binding.progress.isVisible = false
-                binding.textProgress.isVisible = false
+                binding.shimmerLayout.stopShimmerAnimation()
+                binding.shimmerLayout.visibility = View.GONE
+                binding.recyclerDecks.visibility = View.VISIBLE
             }
         })
     }

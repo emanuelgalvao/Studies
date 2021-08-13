@@ -40,4 +40,8 @@
     <!-- ViewPager -->
     <color name="dots_color">#024E9F</color>
 
+    <!-- Shimmer Effect -->
+    <color name="shimmer_card">#dddddd</color>
+    <color name="shimmer_effect">#BFBFBF</color>
+
 </resources>
